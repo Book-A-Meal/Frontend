@@ -6,3 +6,23 @@ export const loginValidator = yup.object({
 });
 
 export type LoginInput = yup.InferType<typeof loginValidator>;
+
+export const signupValidator = yup.object({
+  name: yup
+    .string()
+    .min(4, "Name must be at least 4 characters")
+    .max(50, "Name must be less than 50 characters")
+    .required(),
+  email: yup.string().email().required(),
+  password: yup.string().min(4).required(),
+  password_confirmation: yup
+    .string()
+    .min(4, "Password confirmation must be at least 4 characters")
+    .required("Password confirmation is required")
+    .oneOf([
+      yup.ref("password"),
+      "Password confirmation does not match with your password",
+    ]),
+});
+
+export type SignupInput = yup.InferType<typeof signupValidator>;
