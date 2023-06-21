@@ -1,8 +1,18 @@
-import { TextInput, Button, Group, Box, PasswordInput } from "@mantine/core";
+import {
+  TextInput,
+  Button,
+  Group,
+  Box,
+  PasswordInput,
+  Text,
+} from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
-import { LoginInput, loginValidator } from "../../../utils/validators/auth.validators";
+import {
+  LoginInput,
+  loginValidator,
+} from "../../../../utils/validators/auth.validators";
 
-export function Login() {
+export function Signup() {
   const form = useForm<LoginInput>({
     initialValues: {
       email: "",
@@ -14,6 +24,7 @@ export function Login() {
 
   return (
     <Box maw={300} mx="auto">
+      <Text>Register Page</Text>
       <form onSubmit={form.onSubmit((values) => console.log(values))}>
         <TextInput
           withAsterisk
