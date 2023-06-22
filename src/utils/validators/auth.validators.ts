@@ -17,7 +17,7 @@ export const signupValidator = yup.object({
   password: yup.string().min(4).required(),
   password_confirmation: yup
     .string()
-    .min(4, "Password confirmation must be at least 4 characters")
+    .min(6, "Password confirmation must be at least 4 characters")
     .required("Password confirmation is required")
     .oneOf([
       yup.ref("password"),

@@ -22,6 +22,32 @@ export function Login() {
     validate: yupResolver(loginValidator),
   });
 
+  const submitForm = () => {
+    const formItem = new FormData();
+
+    formItem.append("email", form.values.email);
+    formItem.append("password", form.values.password);
+
+    fetch("http://localhost:3000/user/login", {
+      method: "POST",
+      body: formItem,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Can't perform request");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data)
+        // localStorage.setItem("id", data.data.data.id);
+        // localStorage.setItem("name", data.data.data.name);
+        // localStorage.setItem("email", data.data.data.email);
+        // localStorage.setItem("image", data.data.image);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <Box maw={300} mx="auto">
       <Text>Login Page</Text>
@@ -40,7 +66,9 @@ export function Login() {
         />
 
         <Group position="left" mt="md">
-          <Button type="submit">Submit</Button>
+          <button type="submit" onClick={submitForm}>
+            Submit
+          </button>
         </Group>
       </form>
     </Box>
