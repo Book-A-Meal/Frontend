@@ -23,6 +23,7 @@ export const signupValidator = yup.object({
       yup.ref("password"),
       "Password confirmation does not match with your password",
     ]),
+  // file: yup.mixed().required("File is required")
 });
 
 export type SignupInput = yup.InferType<typeof signupValidator>;

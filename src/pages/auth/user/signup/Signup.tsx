@@ -5,12 +5,14 @@ import {
   Box,
   PasswordInput,
   Text,
+  FileInput,
 } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import {
   SignupInput,
   signupValidator,
 } from "../../../../utils/validators/auth.validators";
+import { useState } from "react";
 
 export function Signup() {
   const form = useForm<SignupInput>({
@@ -19,15 +21,47 @@ export function Signup() {
       email: "",
       password: "",
       password_confirmation: "",
+      // file: Blob,
     },
 
     validate: yupResolver(signupValidator),
   });
+  const [file, setFile] = useState();
+
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formItem = new FormData();
+
+    formItem.append("name", form.values.name);
+    formItem.append("email", form.values.email);
+    formItem.append("password", form.values.password);
+    formItem.append("password_confirmation", form.values.password_confirmation);
+    formItem.append("file", file);
+
+    console.log(formItem);
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      body: formItem,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Can't perform request");
+        }
+        return res.json();
+      })
+      .then((data) =>{
+        localStorage.setItem("id", data.data.data.id);
+        localStorage.setItem("name", data.data.data.name);
+        localStorage.setItem("email", data.data.data.email);
+        localStorage.setItem("image", data.data.image);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <Box maw={300} mx="auto">
       <Text>Register Page</Text>
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form>
         <TextInput
           withAsterisk
           label="Full Name"
@@ -56,8 +90,20 @@ export function Signup() {
           {...form.getInputProps("password_confirmation")}
         />
 
+        <label>
+          Upload files
+          <br />
+          <input
+            type="file"
+            placeholder="Upload Your Image"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+        </label>
+
         <Group position="left" mt="md">
-          <Button type="submit">Submit</Button>
+          <button type="submit" onClick={submitForm}>
+            Submit
+          </button>
         </Group>
       </form>
     </Box>
