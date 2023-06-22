@@ -1,7 +1,18 @@
+import "./landing.css";
+import Footer from "../../components/footer/Footer";
+import Nav from "../../components/navbar/Nav";
+
 function Landing() {
   return (
-    <div>This is the landing page</div>
-  )
+    <>
+      <Nav />
+
+      <div className="body">
+        <Footer />
+      </div>
+      <Footer />
+    </>
+  );
 }
 
-export default Landing
+export default Landing;
