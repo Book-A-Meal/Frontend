@@ -1,11 +1,9 @@
 import {
   TextInput,
-  Button,
   Group,
   Box,
   PasswordInput,
   Text,
-  FileInput,
 } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import {
@@ -13,8 +11,10 @@ import {
   signupValidator,
 } from "../../../../utils/validators/auth.validators";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Signup() {
+  const navigate = useNavigate()
   const form = useForm<SignupInput>({
     initialValues: {
       name: "",
@@ -49,9 +49,14 @@ export function Signup() {
         }
         return res.json();
       })
-      .then((data) =>{
+      .then((data) => {
+        if (data.data.token) {
+          navigate('/home')
+        }
         localStorage.setItem("id", data.data.data.id);
+        localStorage.setItem("token", data.data.token);
         localStorage.setItem("name", data.data.data.name);
+        localStorage.setItem("isAdmin", data.data.data.isAdmin);
         localStorage.setItem("email", data.data.data.email);
         localStorage.setItem("image", data.data.image);
       })

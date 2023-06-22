@@ -1,6 +1,5 @@
 import {
   TextInput,
-  Button,
   Group,
   Box,
   PasswordInput,
@@ -11,8 +10,10 @@ import {
   LoginInput,
   loginValidator,
 } from "../../../../utils/validators/auth.validators";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
+  const navigate = useNavigate();
   const form = useForm<LoginInput>({
     initialValues: {
       email: "",
@@ -39,11 +40,15 @@ export function Login() {
         return res.json();
       })
       .then((data) => {
-        console.log(data)
-        // localStorage.setItem("id", data.data.data.id);
-        // localStorage.setItem("name", data.data.data.name);
-        // localStorage.setItem("email", data.data.data.email);
-        // localStorage.setItem("image", data.data.image);
+        if (data.data.token) {
+          navigate("/home");
+        }
+        localStorage.setItem("id", data.data.data.id);
+        localStorage.setItem("token", data.data.token);
+        localStorage.setItem("name", data.data.data.name);
+        localStorage.setItem("isAdmin", data.data.data.isAdmin);
+        localStorage.setItem("email", data.data.data.email);
+        localStorage.setItem("image", data.data.image);
       })
       .catch((error) => console.log(error));
   };
