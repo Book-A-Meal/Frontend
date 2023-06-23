@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 export const loginValidator = yup.object({
   email: yup.string().required(),
-  password: yup.string().min(6).required(),
+  password: yup.string().required(),
 });
 
 export type LoginInput = yup.InferType<typeof loginValidator>;

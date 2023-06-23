@@ -1,10 +1,4 @@
-import {
-  TextInput,
-  Group,
-  Box,
-  PasswordInput,
-  Text,
-} from "@mantine/core";
+import { TextInput, Group, Box, PasswordInput } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import {
   SignupInput,
@@ -15,19 +9,17 @@ import { useNavigate } from "react-router-dom";
 import Nav from "../../../../components/navbar/Nav";
 
 export function Signup() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const form = useForm<SignupInput>({
     initialValues: {
       name: "",
       email: "",
       password: "",
       password_confirmation: "",
-      // file: Blob,
     },
-
     validate: yupResolver(signupValidator),
   });
-  const [file, setFile] = useState();
+  const [file, setFile] = useState<any>();
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,7 +44,7 @@ export function Signup() {
       })
       .then((data) => {
         if (data.data.token) {
-          navigate('/home')
+          navigate("/home");
         }
         localStorage.setItem("id", data.data.data.id);
         localStorage.setItem("token", data.data.token);
@@ -67,10 +59,13 @@ export function Signup() {
   return (
     <>
       <Nav />
-      <Box maw={300} mx="auto" style={{
-        marginTop: '6em'
-      }}>
-        <Text>Register Page</Text>
+      <Box
+        maw={300}
+        mx="auto"
+        style={{
+          marginTop: "6em",
+        }}
+      >
         <form>
           <TextInput
             withAsterisk

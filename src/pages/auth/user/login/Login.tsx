@@ -1,4 +1,4 @@
-import { TextInput, Group, Box, PasswordInput, Text } from "@mantine/core";
+import { TextInput, Group, Box, PasswordInput } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import {
   LoginInput,
@@ -58,7 +58,6 @@ export function Login() {
           marginTop: "10em",
         }}
       >
-        <Text>Login Page</Text>
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
           <TextInput
             withAsterisk
