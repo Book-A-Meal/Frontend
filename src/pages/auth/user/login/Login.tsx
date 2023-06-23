@@ -6,7 +6,8 @@ import {
 } from "../../../../utils/validators/auth.validators";
 import { useNavigate } from "react-router-dom";
 import Nav from "../../../../components/navbar/Nav";
-import { showAppNotification } from "../../../../utils/validators/notifications.helpers";
+import { notifications } from "@mantine/notifications";
+import { IconX, IconCheck } from "@tabler/icons-react";
 
 export function Login() {
   const navigate = useNavigate();
@@ -31,12 +32,26 @@ export function Login() {
     })
       .then((res) => {
         if (!res.ok) {
+           notifications.show({
+             title: "Failed",
+             message: "Seems there is something wrong 🤥",
+             color: "red",
+             autoClose: 1800,
+             icon: <IconX />,
+           });
           throw new Error("Can't perform request");
         }
         return res.json();
       })
       .then((data) => {
         if (data.data.token) {
+          notifications.show({
+            title: data.message,
+            message: "Hey there, your code is awesome! 🤥",
+            color: "green",
+            autoClose: 1800,
+            icon: <IconCheck />,
+          });
           navigate("/home");
         }
         localStorage.setItem("id", data.data.data.id);
@@ -47,12 +62,8 @@ export function Login() {
         localStorage.setItem("image", data.data.image);
       })
       .catch((error) => {
-        showAppNotification({
-          title: "Failed",
-          message: error,
-          isError: true,
-        });
-        console.log(error)});
+        console.log(error);
+      });
   };
 
   return (
@@ -65,7 +76,7 @@ export function Login() {
           marginTop: "10em",
         }}
       >
-        <form onSubmit={form.onSubmit((values) =>(values))}>
+        <form onSubmit={form.onSubmit((values) => values)}>
           <TextInput
             withAsterisk
             label="Email"
