@@ -7,6 +7,8 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "../../../../components/navbar/Nav";
+import { notifications } from "@mantine/notifications";
+import { IconX, IconCheck } from "@tabler/icons-react";
 
 export function Signup() {
   const navigate = useNavigate();
@@ -38,12 +40,26 @@ export function Signup() {
     })
       .then((res) => {
         if (!res.ok) {
+          notifications.show({
+            title: "Failed",
+            message: "Seems there is something wrong 🤥",
+            color: "red",
+            autoClose: 1800,
+            icon: <IconX />,
+          });
           throw new Error("Can't perform request");
         }
         return res.json();
       })
       .then((data) => {
         if (data.data.token) {
+          notifications.show({
+            title: data.message,
+            message: "Happy meal day 🤥",
+            color: "green",
+            autoClose: 1800,
+            icon: <IconCheck />,
+          });
           navigate("/home");
         }
         localStorage.setItem("id", data.data.data.id);
