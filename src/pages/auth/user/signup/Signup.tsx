@@ -12,6 +12,7 @@ import {
 } from "../../../../utils/validators/auth.validators";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Nav from "../../../../components/navbar/Nav";
 
 export function Signup() {
   const navigate = useNavigate()
@@ -64,53 +65,58 @@ export function Signup() {
   };
 
   return (
-    <Box maw={300} mx="auto">
-      <Text>Register Page</Text>
-      <form>
-        <TextInput
-          withAsterisk
-          label="Full Name"
-          placeholder="Enter your full name"
-          {...form.getInputProps("name")}
-        />
-
-        <TextInput
-          withAsterisk
-          label="Email"
-          placeholder="your@email.com"
-          {...form.getInputProps("email")}
-        />
-
-        <PasswordInput
-          withAsterisk
-          label="Password"
-          placeholder="Enter your password"
-          {...form.getInputProps("password")}
-        />
-
-        <PasswordInput
-          withAsterisk
-          label="Confirm Password"
-          placeholder="Enter your confirmation password"
-          {...form.getInputProps("password_confirmation")}
-        />
-
-        <label>
-          Upload files
-          <br />
-          <input
-            type="file"
-            placeholder="Upload Your Image"
-            onChange={(e) => setFile(e.target.files[0])}
+    <>
+      <Nav />
+      <Box maw={300} mx="auto" style={{
+        marginTop: '6em'
+      }}>
+        <Text>Register Page</Text>
+        <form>
+          <TextInput
+            withAsterisk
+            label="Full Name"
+            placeholder="Enter your full name"
+            {...form.getInputProps("name")}
           />
-        </label>
 
-        <Group position="left" mt="md">
-          <button type="submit" onClick={submitForm}>
-            Submit
-          </button>
-        </Group>
-      </form>
-    </Box>
+          <TextInput
+            withAsterisk
+            label="Email"
+            placeholder="your@email.com"
+            {...form.getInputProps("email")}
+          />
+
+          <PasswordInput
+            withAsterisk
+            label="Password"
+            placeholder="Enter your password"
+            {...form.getInputProps("password")}
+          />
+
+          <PasswordInput
+            withAsterisk
+            label="Confirm Password"
+            placeholder="Enter your confirmation password"
+            {...form.getInputProps("password_confirmation")}
+          />
+
+          <label>
+            Upload files
+            <br />
+            <input
+              type="file"
+              placeholder="Upload Your Image"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </label>
+
+          <Group position="left" mt="md">
+            <button type="submit" onClick={submitForm}>
+              Submit
+            </button>
+          </Group>
+        </form>
+      </Box>
+    </>
   );
 }

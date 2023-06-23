@@ -7,7 +7,7 @@ function Nav() {
     <div className="nav-container">
       <span className="logo">BOOK A MEAL</span>
       <div className="link-group">
-        <NavLink to="#" className="link">
+        <NavLink to="/" className="link">
           All Meals
         </NavLink>
         <NavLink to="#" className="link">
