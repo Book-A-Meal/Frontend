@@ -6,6 +6,7 @@ import {
 } from "../../../../utils/validators/auth.validators";
 import { useNavigate } from "react-router-dom";
 import Nav from "../../../../components/navbar/Nav";
+import { showAppNotification } from "../../../../utils/validators/notifications.helpers";
 
 export function Login() {
   const navigate = useNavigate();
@@ -45,7 +46,13 @@ export function Login() {
         localStorage.setItem("email", data.data.data.email);
         localStorage.setItem("image", data.data.image);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        showAppNotification({
+          title: "Failed",
+          message: error,
+          isError: true,
+        });
+        console.log(error)});
   };
 
   return (
@@ -58,7 +65,7 @@ export function Login() {
           marginTop: "10em",
         }}
       >
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form onSubmit={form.onSubmit((values) =>(values))}>
           <TextInput
             withAsterisk
             label="Email"
