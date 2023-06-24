@@ -1,4 +1,6 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import "./home.css";
+import { useNavigate } from "react-router-dom";
+import AllMeals from "./other/AllMeals";
 
 function Home() {
   const navigate = useNavigate();
@@ -6,24 +8,8 @@ function Home() {
     <>
       <div className="nav-container">
         <span className="logo">BOOK A MEAL</span>
-        <div className="link-group">
-          <NavLink to="#" className="link">
-            All Meals
-          </NavLink>
-          <NavLink to="#" className="link">
-            Careers
-          </NavLink>
-          <NavLink to="#" className="link">
-            Careers
-          </NavLink>
-          <NavLink to="#" className="link">
-            Careers
-          </NavLink>
-          <NavLink to="#" className="link">
-            Careers
-          </NavLink>
-        </div>
         <div className="btn-group">
+          {/* Logout button */}
           <button
             onClick={() => {
               fetch("http://localhost:3000/users/logout", {
@@ -48,6 +34,7 @@ function Home() {
           </button>
         </div>
       </div>
+      <AllMeals />
     </>
   );
 }
