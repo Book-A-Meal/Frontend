@@ -1,4 +1,4 @@
-// export default AllMeals;
+import { MealCard } from "./MealCard.tsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -7,7 +7,10 @@ interface Meal {
   name: string;
   description: string;
   price: number;
-  // Add any other properties as per your `Meal` type
+  admin_mage: string;
+  admin_data:{
+    name: string;
+  }
 }
 
 export default function AllMeals() {
@@ -17,6 +20,8 @@ export default function AllMeals() {
     axios
       .get("http://127.0.0.1:3000/meals")
       .then((res) => {
+        console.log(res.data.data);
+        // console.log(res.data.data[0].admin_mage);
         setData(res.data.data);
       })
       .catch((error) => {
@@ -29,10 +34,19 @@ export default function AllMeals() {
     <>
       {data.map((meal) => (
         <div key={meal.id}>
-          <p>{meal.name}</p>
-          <p>{meal.description}</p>
-          <p>{meal.price}</p>
+          {/* <p>{meal.description}</p>
+          <p>{meal.price}</p> */}
           {/* Add any other desired meal data */}
+          <MealCard
+            image={""}
+            category={""}
+            title={""}
+            date={""}
+            author={{
+              name: meal.admin_data.name,
+              avatar: meal.admin_mage,
+            }}
+          />
         </div>
       ))}
     </>
