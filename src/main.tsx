@@ -10,6 +10,7 @@ import ProtectedRoute from "./pages/ProtectedRoute.tsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import { LoginAdmin } from "./pages/auth/admin/login/Login.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -37,9 +38,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           />
 
           <Route path="/user/login" element={<Login />} />
-
           <Route path="/user/register" element={<Signup />} />
+
+
           <Route path="/admin/register" element={<SignupAdmin />} />
+          <Route path="/admin/login" element={<LoginAdmin />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>
