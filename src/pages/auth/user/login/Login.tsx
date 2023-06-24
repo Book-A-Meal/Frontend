@@ -1,10 +1,10 @@
-import { TextInput, Group, Box, PasswordInput } from "@mantine/core";
+import { TextInput, Group, Box, PasswordInput, Text } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import {
   LoginInput,
   loginValidator,
 } from "../../../../utils/validators/auth.validators";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Nav from "../../../../components/navbar/Nav";
 import { notifications } from "@mantine/notifications";
 import { IconX, IconCheck } from "@tabler/icons-react";
@@ -91,6 +91,10 @@ export function Login() {
           />
 
           <Group position="left" mt="md">
+            <Text>
+              Are you and admin?{" "}
+              <NavLink to="/admin/register"> Login Here</NavLink>
+            </Text>
             <button type="submit" onClick={submitForm}>
               Submit
             </button>
