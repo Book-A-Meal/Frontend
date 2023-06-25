@@ -65,7 +65,7 @@ export function SignupAdmin() {
         localStorage.setItem("id", data.data.data.id);
         localStorage.setItem("token", data.data.token);
         localStorage.setItem("name", data.data.data.name);
-        localStorage.setItem("isAdmin", data.data.data.isAdmin);
+        localStorage.setItem("isAdmin", data.data.data.IsAdmin);
         localStorage.setItem("email", data.data.data.email);
         localStorage.setItem("image", data.data.image);
       })

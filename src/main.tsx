@@ -12,6 +12,7 @@ import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { LoginAdmin } from "./pages/auth/admin/login/Login.tsx";
 import AllMeals from "./pages/other/AllMeals.tsx";
+import Dashboard from "./pages/dashboard/Dashboard.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -44,6 +45,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 
           <Route path="/admin/register" element={<SignupAdmin />} />
           <Route path="/admin/login" element={<LoginAdmin />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>

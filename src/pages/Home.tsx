@@ -1,18 +1,26 @@
 import "./home.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AllMeals from "./other/AllMeals";
 
 function Home() {
   const navigate = useNavigate();
+  const isAdmin = localStorage.getItem("isAdmin");
+  let route = isAdmin === "true" ? "admins" : "users";
   return (
     <>
       <div className="nav-container">
         <span className="logo">BOOK A MEAL</span>
+        {isAdmin && isAdmin === "true" ? (
+          <NavLink to="/admin/dashboard" className="link home-link">
+            Dashboard
+          </NavLink>
+        ) : null}
+
         <div className="btn-group">
           {/* Logout button */}
           <button
             onClick={() => {
-              fetch("http://localhost:3000/users/logout", {
+              fetch(`http://localhost:3000/${route}/logout`, {
                 method: "DELETE",
               })
                 .then((res) => {
