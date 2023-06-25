@@ -1,9 +1,12 @@
-import React from 'react'
+import "./dashboard.css";
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
-  )
+    <>
+      <div className="first-div"></div>
+      <div className="second-div"></div>
+    </>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
