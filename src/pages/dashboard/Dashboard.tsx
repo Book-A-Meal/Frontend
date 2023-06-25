@@ -1,11 +1,44 @@
+import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
+import { Avatar } from "@mantine/core";
 
 function Dashboard() {
+    const profile = localStorage.getItem("image");
+  const navigate = useNavigate();
   return (
-    <>
-      <div className="first-div"></div>
+    <div className="dashboard-container">
+      <div className="first-div">
+        <div className="top">
+          <Avatar src={profile} />
+        </div>
+        <div className="middle"></div>
+        <div className="bottom">
+          <button
+            onClick={() => {
+              fetch("http://localhost:3000/admins/logout", {
+                method: "DELETE",
+              })
+                .then((res) => {
+                  if (!res.ok) {
+                    throw new Error("Can't perform request");
+                  }
+                  return res.json();
+                })
+                .then((data) => {
+                  if (data.message === "Logout successful") {
+                    localStorage.clear();
+                    navigate("/user/login");
+                  }
+                })
+                .catch((error) => console.error(error));
+            }}
+          >
+            Log Out
+          </button>
+        </div>
+      </div>
       <div className="second-div"></div>
-    </>
+    </div>
   );
 }
 

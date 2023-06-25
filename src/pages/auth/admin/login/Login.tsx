@@ -44,6 +44,7 @@ export function LoginAdmin() {
         return res.json();
       })
       .then((data) => {
+        console.log(data.data.image);
         if (data.data.token) {
           notifications.show({
             title: data.message,
