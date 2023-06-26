@@ -21,8 +21,10 @@ function Dashboard() {
           <span>{email}</span>
         </div>
         <div className="middle">
-          <button onClick={() => setComponent(<AddMeal/>)}>Add Meals</button>
-          <button onClick={() => setComponent(<EditMeal/>)}>Update Meal</button>
+          <button onClick={() => setComponent(<AddMeal />)}>Add Meals</button>
+          <button onClick={() => setComponent(<EditMeal />)}>
+            Update Meal
+          </button>
           {/* <button onClick={() => setComponent()}>Add Meals</button> */}
         </div>
         <div className="bottom">
@@ -50,7 +52,7 @@ function Dashboard() {
           </button>
         </div>
       </div>
-      <div className="second-div">{component}</div>
+      <div className="second-div">{component ? component : <AddMeal />}</div>
     </div>
   );
 }
