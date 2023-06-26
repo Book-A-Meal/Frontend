@@ -1,17 +1,25 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./dashboard.css";
 import { Avatar } from "@mantine/core";
 
 function Dashboard() {
     const profile = localStorage.getItem("image");
+    const name = localStorage.getItem("name");
+    const email = localStorage.getItem("email");
   const navigate = useNavigate();
   return (
     <div className="dashboard-container">
       <div className="first-div">
         <div className="top">
           <Avatar src={profile} />
+          <span>{name}</span>
+          <span>{email}</span>
         </div>
-        <div className="middle"></div>
+        <div className="middle">
+          <NavLink to="#">Add Meals</NavLink>
+          <NavLink to="#">Update Meal</NavLink>
+          <NavLink to="#">Add Meals</NavLink>
+        </div>
         <div className="bottom">
           <button
             onClick={() => {
