@@ -3,8 +3,10 @@ import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddMeal() {
+  const navigate = useNavigate();
   // getting id from localStorage
   const uid = localStorage.getItem("id");
 
@@ -55,7 +57,7 @@ function AddMeal() {
             autoClose: 1800,
             icon: <IconCheck />,
           });
-          // navigate("/home");
+          navigate("/home");
         }
       })
       .catch((error) => console.log(error));
