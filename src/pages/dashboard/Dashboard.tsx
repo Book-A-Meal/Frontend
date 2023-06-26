@@ -1,11 +1,16 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
 import { Avatar } from "@mantine/core";
+import { useState } from "react";
+import AddMeal from "./pages/AddMeal";
+import EditMeal from "./pages/EditMeal";
 
 function Dashboard() {
-    const profile = localStorage.getItem("image");
-    const name = localStorage.getItem("name");
-    const email = localStorage.getItem("email");
+  const [component, setComponent] = useState<any>();
+
+  const profile = localStorage.getItem("image");
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
   const navigate = useNavigate();
   return (
     <div className="dashboard-container">
@@ -16,9 +21,9 @@ function Dashboard() {
           <span>{email}</span>
         </div>
         <div className="middle">
-          <NavLink to="#">Add Meals</NavLink>
-          <NavLink to="#">Update Meal</NavLink>
-          <NavLink to="#">Add Meals</NavLink>
+          <button onClick={() => setComponent(<AddMeal/>)}>Add Meals</button>
+          <button onClick={() => setComponent(<EditMeal/>)}>Update Meal</button>
+          {/* <button onClick={() => setComponent()}>Add Meals</button> */}
         </div>
         <div className="bottom">
           <button
@@ -45,7 +50,7 @@ function Dashboard() {
           </button>
         </div>
       </div>
-      <div className="second-div"></div>
+      <div className="second-div">{component}</div>
     </div>
   );
 }
