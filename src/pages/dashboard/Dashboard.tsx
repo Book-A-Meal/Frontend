@@ -25,7 +25,6 @@ function Dashboard() {
           <button onClick={() => setComponent(<EditMeal />)}>
             Update Meal
           </button>
-          {/* <button onClick={() => setComponent()}>Add Meals</button> */}
         </div>
         <div className="bottom">
           <button
