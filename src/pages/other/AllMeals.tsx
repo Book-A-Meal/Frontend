@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 interface Meal {
+  meal_img: string;
   id: number;
   name: string;
   description: string;
   price: number;
   admin_mage: string;
-  admin_data:{
+  admin_data: {
     name: string;
-  }
+  };
 }
 
 export default function AllMeals() {
@@ -34,13 +35,11 @@ export default function AllMeals() {
     <>
       {data.map((meal) => (
         <div key={meal.id}>
-          {/* <p>{meal.description}</p>
-          <p>{meal.price}</p> */}
-          {/* Add any other desired meal data */}
           <MealCard
-            image={""}
+            image={meal.meal_img}
             category={""}
-            title={""}
+            title={meal.name}
+            description={meal.description}
             date={""}
             author={{
               name: meal.admin_data.name,
