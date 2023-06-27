@@ -1,5 +1,7 @@
-import "./meal.css"
+import "./meal.css";
 import { Avatar } from "@mantine/core";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 interface MealCardProps {
   image: string;
@@ -31,7 +33,11 @@ export function MealCard({
         </div> */}
       </div>
       <p>{description}</p>
-      <img src={image} height={300} width={300} />
+      <PhotoProvider>
+        <PhotoView src={image}>
+          <img src={image} alt="Image.png" height={300} width={300} />
+        </PhotoView>
+      </PhotoProvider>
       <span>By {author.name}</span>
     </div>
   );
