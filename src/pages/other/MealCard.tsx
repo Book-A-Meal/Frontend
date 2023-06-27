@@ -26,7 +26,7 @@ export function MealCard({
   return (
     <div className="container cardContainer">
       <div>
-        <span className={title}>{title}</span>
+        <h3 className={title}>{title}</h3>
         {/* <div>
           <Avatar size={25} src={author.avatar} />
           <span>{author.name}</span>
@@ -35,10 +35,28 @@ export function MealCard({
       <p>{description}</p>
       <PhotoProvider>
         <PhotoView src={image}>
-          <img src={image} alt="Image.png" height={300} width={300} />
+          <img
+            src={image}
+            alt="Image.png"
+            height={300}
+            width={300}
+            style={{
+              cursor: "pointer",
+            }}
+          />
         </PhotoView>
       </PhotoProvider>
-      <span>By {author.name}</span>
+      <span>
+        By{" "}
+        <span
+          style={{
+            color: "green",
+            cursor: "pointer",
+          }}
+        >
+          {author.name}
+        </span>
+      </span>
     </div>
   );
 }
