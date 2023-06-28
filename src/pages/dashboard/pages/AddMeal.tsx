@@ -1,3 +1,4 @@
+import "./../dashboard.css"
 import { Group, Text, TextInput, Textarea, NumberInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
@@ -64,8 +65,8 @@ function AddMeal() {
   };
 
   return (
-    <div>
-      <span>add meal</span>
+    <div className="newMealContainer">
+      <span className="header">Add a new meal</span>
       <form onSubmit={form.onSubmit((values) => values)}>
         <TextInput
           withAsterisk
@@ -100,7 +101,6 @@ function AddMeal() {
         </label>
 
         <Group position="left" mt="md">
-          <Text>Are you and admin? </Text>
           <button type="submit" onClick={submitForm}>
             Add Meal
           </button>

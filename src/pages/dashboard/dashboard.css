@@ -35,3 +35,19 @@
   display: flex;
   flex: 10;
 }
+
+/* For New Meal */
+.newMealContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+.newMealContainer .header{
+  font-weight: bold;
+  font-size: 24px;
+  font-style: italic;
+}
+.newMealContainer form{
+  gap: 100px;
+}
