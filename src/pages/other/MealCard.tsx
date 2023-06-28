@@ -1,4 +1,5 @@
 import "./meal.css";
+import { useNavigate } from "react-router-dom";
 import { Avatar } from "@mantine/core";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
@@ -10,6 +11,7 @@ interface MealCardProps {
   date: string;
   description: string;
   author: {
+    id: number;
     name: string;
     avatar: string;
   };
@@ -23,6 +25,7 @@ export function MealCard({
   description,
   author,
 }: MealCardProps) {
+  const navigate = useNavigate()
   return (
     <div className="container cardContainer">
       <div>
@@ -49,6 +52,7 @@ export function MealCard({
       <span>
         By{" "}
         <span
+          onClick={() => navigate(`/view/profile/${author.id}`)}
           style={{
             color: "green",
             cursor: "pointer",

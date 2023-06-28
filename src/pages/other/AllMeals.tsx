@@ -10,6 +10,7 @@ interface Meal {
   price: number;
   admin_mage: string;
   admin_data: {
+    id: number;
     name: string;
   };
 }
@@ -44,6 +45,7 @@ export default function AllMeals() {
             author={{
               name: meal.admin_data.name,
               avatar: meal.admin_mage,
+              id: meal.admin_data.id,
             }}
           />
         </div>
