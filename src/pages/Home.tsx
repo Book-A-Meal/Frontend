@@ -1,6 +1,7 @@
 import "./home.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import AllMeals from "./other/AllMeals";
+import Footer from "../components/footer/Footer";
 
 function Home() {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function Home() {
         </div>
       </div>
       <AllMeals />
+      <Footer />
     </>
   );
 }

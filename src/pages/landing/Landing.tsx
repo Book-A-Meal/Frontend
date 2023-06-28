@@ -1,5 +1,5 @@
 import "./landing.css";
-// import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/Footer";
 import Nav from "../../components/navbar/Nav";
 import AllMeals from "../other/AllMeals";
 
@@ -8,7 +8,7 @@ function Landing() {
     <>
       <Nav />
       <AllMeals />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
