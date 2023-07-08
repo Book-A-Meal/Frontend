@@ -12,10 +12,6 @@ interface Meal {
   description: string;
   price: number;
   admin_mage: string;
-  admin_data: {
-    id: number;
-    name: string;
-  };
 }
 
 function EditMeal() {
@@ -31,19 +27,7 @@ function EditMeal() {
         console.error(error);
       });
   }, []);
-  // useEffect(() => {
-  //   axios
-  //     .get("http://127.0.0.1:3000/meals")
-  //     .then((res) => {
-  //       console.log(res.data.data);
-  //       // console.log(res.data.data[0].admin_mage);
-  //       // setData(res.data.data);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error state or display error message
-  //       console.error(error);
-  //     });
-  // }, []);
+  
 
   return (
     <>
@@ -56,11 +40,6 @@ function EditMeal() {
             title={meal.name}
             description={meal.description}
             date={""}
-            author={{
-              name: meal.admin_data.name,
-              avatar: meal.admin_mage,
-              id: meal.admin_data.id,
-            }}
           />
         </div>
       ))}

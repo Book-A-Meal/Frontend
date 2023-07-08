@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./../../other/meal.css";
-import { useNavigate } from "react-router-dom";
-import "react-photo-view/dist/react-photo-view.css";
+// import { useNavigate } from "react-router-dom";
+import EditFormPost from "./EditPostForm";
 
 interface MealCardProps {
   id: number;
@@ -10,11 +10,6 @@ interface MealCardProps {
   title: string;
   date: string;
   description: string;
-  author: {
-    id: number;
-    name: string;
-    avatar: string;
-  };
 }
 
 export function EditEachPost({
@@ -24,12 +19,16 @@ export function EditEachPost({
   title,
   date,
   description,
-  author,
 }: MealCardProps) {
-    const uid = id
-//   const navigate = useNavigate();
+  const uid = id;
+  const [isFormEdit, setIsFormEdit] = useState<boolean>(false);
+
+  //   const navigate = useNavigate();
   return (
-    <div className="container cardContainer" onClick={() => console.log(uid)}>
+    <div
+      className="container cardContainer"
+      onClick={() => setIsFormEdit(!isFormEdit)}
+    >
       <div>
         <h3 className={title}>{title}</h3>
       </div>
@@ -43,6 +42,7 @@ export function EditEachPost({
           cursor: "pointer",
         }}
       />
+      {isFormEdit ? <EditFormPost id={id} /> : null}
     </div>
   );
 }
