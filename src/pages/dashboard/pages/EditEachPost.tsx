@@ -1,78 +1,58 @@
-import { createStyles, Card, Image, Avatar, Text, Group } from "@mantine/core";
+import "./../../other/meal.css";
+import { useNavigate } from "react-router-dom";
+import { Avatar } from "@mantine/core";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
-  },
-
-  title: {
-    fontWeight: 700,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    lineHeight: 1.2,
-  },
-
-  body: {
-    padding: theme.spacing.md,
-  },
-}));
-
-interface ArticleCardVerticalProps {
+interface MealCardProps {
   image: string;
   category: string;
   title: string;
   date: string;
+  description: string;
   author: {
+    id: number;
     name: string;
     avatar: string;
   };
-  /**
-   * meal_img: string;
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  admin_mage: string;
-  admin_data: {
-    id: number;
-    name: string;
-  };
-   */
 }
 
-export default function EditEachPost({
+export function EditEachPost({
   image,
   category,
   title,
   date,
+  description,
   author,
-}: ArticleCardVerticalProps) {
-  const { classes } = useStyles();
+}: MealCardProps) {
+  const navigate = useNavigate();
   return (
-    <Card withBorder radius="md" p={0} className={classes.card}>
-      <Group noWrap spacing={0}>
-        <Image src={image} height={140} width={140} />
-        <div className={classes.body}>
-          <Text transform="uppercase" color="dimmed" weight={700} size="xs">
-            {category}
-          </Text>
-          <Text className={classes.title} mt="xs" mb="md">
-            {title}
-          </Text>
-          <Group noWrap spacing="xs">
-            <Group spacing="xs" noWrap>
-              <Avatar size={20} src={author.avatar} />
-              <Text size="xs">{author.name}</Text>
-            </Group>
-            <Text size="xs" color="dimmed">
-              •
-            </Text>
-            <Text size="xs" color="dimmed">
-              {date}
-            </Text>
-          </Group>
-        </div>
-      </Group>
-    </Card>
+    <div className="container cardContainer" onClick={() => console.log(title)}>
+      <div>
+        <h3 className={title}>{title}</h3>
+      </div>
+      <p>{description}</p>
+      <img
+        src={image}
+        alt="Image.png"
+        height={300}
+        width={300}
+        style={{
+          cursor: "pointer",
+        }}
+      />
+      <span>
+        By{" "}
+        <span
+          onClick={() => navigate(`/view/profile/${author.id}`)}
+          style={{
+            color: "green",
+            cursor: "pointer",
+          }}
+        >
+          {author.name}
+        </span>
+      </span>
+    </div>
   );
 }

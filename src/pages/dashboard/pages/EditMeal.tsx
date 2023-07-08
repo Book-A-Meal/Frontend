@@ -3,8 +3,7 @@ import { notifications } from "@mantine/notifications";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import EditEachPost from "./EditEachPost";
-import { MealCard } from "../../other/MealCard";
+import { EditEachPost } from "./EditEachPost";
 
 interface Meal {
   meal_img: string;
@@ -50,7 +49,7 @@ function EditMeal() {
     <>
       {data.map((meal) => (
         <div key={meal.id}>
-          <MealCard
+          <EditEachPost
             image={meal.meal_img}
             category={""}
             title={meal.name}
