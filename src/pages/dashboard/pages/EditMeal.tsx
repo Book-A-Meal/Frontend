@@ -50,6 +50,7 @@ function EditMeal() {
       {data.map((meal) => (
         <div key={meal.id}>
           <EditEachPost
+            id={meal.id}
             image={meal.meal_img}
             category={""}
             title={meal.name}
