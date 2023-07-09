@@ -8,7 +8,6 @@ interface MealCardProps {
   image: string;
   category: string;
   title: string;
-  date: string;
   description: string;
 }
 
@@ -17,7 +16,6 @@ export function EditEachPost({
   image,
   category,
   title,
-  date,
   description,
 }: MealCardProps) {
   const uid = id;

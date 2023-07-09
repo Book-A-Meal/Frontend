@@ -1,6 +1,6 @@
 import "./../dashboard.css";
 import axios from "axios";
-import { Group, Text, TextInput, Textarea, NumberInput } from "@mantine/core";
+import { Group, TextInput, Textarea, NumberInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { IconCheck, IconX } from "@tabler/icons-react";
@@ -59,7 +59,7 @@ function EditFormPost({ id }: EditFormPostProps) {
         if (!res.ok) {
           notifications.show({
             title: "Failed",
-            message: "Ooops! something went wrong when creating meal 🤥",
+            message: "Ooops! something went wrong while updating the meal 🤥",
             color: "red",
             autoClose: 1800,
             icon: <IconX />,
@@ -72,7 +72,7 @@ function EditFormPost({ id }: EditFormPostProps) {
         if (data) {
           notifications.show({
             title: data.message,
-            message: "Happy meal day 🤥",
+            message: "Meal updated successfuly 🤥",
             color: "green",
             autoClose: 1800,
             icon: <IconCheck />,

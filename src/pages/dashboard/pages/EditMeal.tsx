@@ -18,8 +18,11 @@ function EditMeal() {
   const [data, setData] = useState<Meal[]>([]);
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:3000/meals")
+      .get(
+        "http://127.0.0.1:3000/meals" /*`http://127.0.0.1:3000/meals/?user_id=${id}`*/
+      )
       .then((res) => {
+        console.log(res.data.data[0].meal_img);
         setData(res.data.data);
       })
       .catch((error) => {
@@ -27,7 +30,6 @@ function EditMeal() {
         console.error(error);
       });
   }, []);
-  
 
   return (
     <>
@@ -39,7 +41,6 @@ function EditMeal() {
             category={""}
             title={meal.name}
             description={meal.description}
-            date={""}
           />
         </div>
       ))}
